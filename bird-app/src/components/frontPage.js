@@ -4,6 +4,10 @@ import { Link } from "react-router-dom";
 class frontPage extends Component {
   state = {};
 
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
+
   render() {
     return (
       <div>

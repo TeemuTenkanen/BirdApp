@@ -11,8 +11,12 @@ class frontPage extends Component {
     this.state = { toggleForm: true, birdName: "", notes: "" };
   }
 
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
+
   back() {
-    this.props.history.replace("/");
+    this.props.history.replace("/viewPage");
   }
 
   handleChange(e) {
@@ -85,6 +89,16 @@ class frontPage extends Component {
               Submit
             </button>
           </form>
+        </div>
+        <br />
+        <br />
+        <div className="row justify-content-center align-items-center align-self-end">
+          <button
+            className=" btn btn-dark back_button col-12 d-flex justify-content-center align-items-center"
+            onClick={this.back}
+          >
+            Back
+          </button>
         </div>
       </div>
     );
