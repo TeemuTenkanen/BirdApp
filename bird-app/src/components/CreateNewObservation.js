@@ -76,12 +76,14 @@ class CreateNewObservation extends Component {
   render() {
     return (
       <React.Fragment>
-        <div className="container-fluid">
-          <div className="row justify-content-center">
-            <h1 className="col-11">Form</h1>
-            <p className="col-11">Here you can fill the new sight</p>
+        <div className="container-fluid col-lg-4">
+          <div className="row justify-content-center jumbotron">
+            <h1 className="col-11 text-center">Form</h1>
+            <p className="col-11 text-center lead">
+              Here you can fill the new sight
+            </p>
           </div>
-          <div className="row justify-content-center">
+          <div className="row justify-content-center m-5">
             <form>
               <div className="form-group">
                 <label>Name of the bird</label>
@@ -128,14 +130,9 @@ class CreateNewObservation extends Component {
           </div>
           <br />
           <br />
-          <div className="row justify-content-center align-items-center align-self-end">
-            <Link
-              className=" btn btn-dark back_button col-12 d-flex justify-content-center align-items-center"
-              to="/"
-            >
-              Back
-            </Link>
-          </div>
+          <Link className=" btn btn-dark col-12" to="/">
+            Back
+          </Link>
         </div>
       </React.Fragment>
     );

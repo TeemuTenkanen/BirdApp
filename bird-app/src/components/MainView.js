@@ -14,13 +14,14 @@ class MainView extends Component {
   render() {
     console.log(this.props);
     return (
-      <div className="container-fluid">
-        <div className="row justify-content-center">
+      <div className="container-fluid col-lg-4">
+        <div className="row justify-content-center jumbotron">
           <h1 className="text-center">Bird gallery</h1>
-          <p className="text-center">
+          <p className="text-center lead">
             Here you can see what other people have seen
           </p>
         </div>
+
         <div className="card">
           <img
             className="card-img-top"
@@ -38,7 +39,7 @@ class MainView extends Component {
           </div>
         </div>
         <br />
-        <Link className="btn btn-secondary" to="/CreateNewObservation">
+        <Link className="btn btn-secondary col-12" to="/CreateNewObservation">
           Create new observation
         </Link>
       </div>
