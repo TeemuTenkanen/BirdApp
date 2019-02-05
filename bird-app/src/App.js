@@ -2,16 +2,50 @@ import React, { Component } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import "./components/styles.css";
-//import frontPage from "./components/frontPage";
-import viewPage from "./components/viewPage";
+import CreateNewObservation from "./components/CreateNewObservation";
+import MainView from "./components/MainView";
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      birdCardList: []
+      /*birdName: "",
+      notes: "",
+      rarity: "",
+      lat: "",
+      timeStamp: "",
+      geolocation: "",
+      picture: "",
+      imageUrl: ""*/
+    };
+  }
+
+  updateBirdCardList(list) {
+    this.setState({ birdCardList: list });
+  }
+
   render() {
+    console.log(this.state);
+
+    const childProps = {
+      birdCardList: this.state.birdCardList,
+      updateBirdCardList: this.updateBirdCardList
+    };
+
     return (
       <Router>
-        <div>
-          <Route path="/" exact strict component={viewPage} />
-        </div>
+        <React.Fragment>
+          <Route
+            path="/"
+            exact
+            strict
+            component={MainView}
+            childProps={childProps}
+          />
+          <Route path="/" exact strict component={CreateNewObservation} />
+        </React.Fragment>
       </Router>
     );
   }
