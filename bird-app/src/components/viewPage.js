@@ -11,6 +11,7 @@ class viewPage extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleDropdown = this.handleDropdown.bind(this);
+    this.handleImageChange = this.handleImageChange.bind(this);
 
     this.state = {
       sceneNumber: 1,
@@ -19,16 +20,18 @@ class viewPage extends Component {
       rarity: "",
       lat: "",
       timeStamp: "",
-      geolocation: ""
+      geolocation: "",
+      picture: "",
+      imageUrl: ""
     };
 
-    /* //With this I can get current latitude
+    //With this I can get current latitude
     window.navigator.geolocation.getCurrentPosition(
       position => {
         this.setState({ lat: position.coords.latitude });
       },
       err => console.log(err)
-    );*/
+    );
   }
 
   back() {
@@ -57,6 +60,19 @@ class viewPage extends Component {
     this.setState({
       rarity: e.target.value
     });
+  }
+
+  handleImageChange(e) {
+    let reader = new FileReader();
+    let picture = e.target.files[0];
+
+    reader.onloadend = () => {
+      this.setState({
+        picture: picture,
+        imageUrl: reader.result
+      });
+    };
+    reader.readAsDataURL(picture);
   }
 
   handleSubmit(event) {
@@ -89,19 +105,11 @@ class viewPage extends Component {
         {this.state.sceneNumber === 1 ? (
           <div>
             <div className="row justify-content-center">
-              <h1 className="col-11">Bird gallery</h1>
-              <p className="col-11">
+              <h1 className="text-center">Bird gallery</h1>
+              <p className="text-center">
                 Here you can see what other people have seen
               </p>
             </div>
-
-            <div>
-              <p>
-                Name, rarity, notes, timestamp, geolocation, picture, video,
-                sound
-              </p>
-            </div>
-
             <div className="card">
               <img
                 className="card-img-top"
@@ -124,6 +132,7 @@ class viewPage extends Component {
               notes={this.state.notes}
               timeStamp={this.state.timeStamp}
               geolocation={this.state.lat}
+              picture={this.state.imageUrl}
             />
             <br />
             <button className="btn btn-secondary" onClick={this.nextScene}>
@@ -186,15 +195,7 @@ class viewPage extends Component {
                 </div>
                 <div className="form-group">
                   <label>Add picture</label>
-                  <input
-                    name="picture"
-                    type="file"
-                    accpet="image/png, image/jpeg"
-                    alt="Submit"
-                    className="form-control-file"
-                    placeholder="Write your notes here"
-                    onChange={this.handleChange}
-                  />
+                  <input type="file" onChange={this.handleImageChange} />
                 </div>
                 <button className="btn btn-primary" onClick={this.handleSubmit}>
                   Submit
