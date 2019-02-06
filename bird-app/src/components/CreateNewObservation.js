@@ -13,8 +13,8 @@ class CreateNewObservation extends Component {
       birdName: "",
       notes: "",
       rarity: "",
-      lat: "",
       timeStamp: "",
+      lat: "",
       geolocation: "",
       picture: "",
       imageUrl: ""
@@ -54,22 +54,23 @@ class CreateNewObservation extends Component {
   }
 
   handleSubmit(event) {
-    window.navigator.geolocation.getCurrentPosition(
-      position => {
-        this.setState({ lat: position.coords.latitude });
-      },
-      err => console.log(err)
-    );
-    //With this I can get current latitude
-    alert("Your sight was submitted");
-    this.setState({
-      timeStamp: Date().toString(),
-      geolocation: this.state.lat
-    });
     event.preventDefault();
+
+    const newObservations = {
+      birdName: this.state.birdName,
+      notes: this.state.notes,
+      rarity: this.state.rarity,
+      timeStamp: Date().toString(),
+      lat: this.state.lat,
+      imageUrl: this.state.imageUrl
+    };
+
+    this.props.addToObservationsList(newObservations);
+
+    this.props.history.push("/");
   }
 
-  componentDidUpdate() {
+  componentDidMount() {
     window.scrollTo(0, 0);
   }
 
@@ -128,7 +129,6 @@ class CreateNewObservation extends Component {
               </button>
             </form>
           </div>
-          <br />
           <br />
           <Link className=" btn btn-dark col-12" to="/">
             Back

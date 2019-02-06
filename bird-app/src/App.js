@@ -9,31 +9,19 @@ class App extends Component {
   constructor(props) {
     super(props);
 
+    this.addToObservationsList = this.addToObservationsList.bind(this);
+
     this.state = {
-      birdCardList: []
-      /*birdName: "",
-      notes: "",
-      rarity: "",
-      lat: "",
-      timeStamp: "",
-      geolocation: "",
-      picture: "",
-      imageUrl: ""*/
+      observationsList: []
     };
   }
 
-  updateBirdCardList(list) {
-    this.setState({ birdCardList: list });
+  addToObservationsList(observation) {
+    const newObservationsList = [...this.state.observationsList, observation];
+    this.setState({ observationsList: newObservationsList });
   }
 
   render() {
-    console.log(this.state);
-
-    const childProps = {
-      birdCardList: this.state.birdCardList,
-      updateBirdCardList: this.updateBirdCardList
-    };
-
     return (
       <Router>
         <React.Fragment>
@@ -41,10 +29,23 @@ class App extends Component {
             path="/"
             exact
             strict
-            component={MainView}
-            childProps={childProps}
+            render={props => (
+              <MainView
+                {...props}
+                observationsList={this.state.observationsList}
+              />
+            )}
           />
-          <Route path="/" exact strict component={CreateNewObservation} />
+          <Route
+            path="/CreateNewObservation"
+            exact
+            render={props => (
+              <CreateNewObservation
+                {...props}
+                addToObservationsList={this.addToObservationsList}
+              />
+            )}
+          />
         </React.Fragment>
       </Router>
     );

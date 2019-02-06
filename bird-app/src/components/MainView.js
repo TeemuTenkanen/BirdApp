@@ -1,22 +1,17 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import Birdcard from "./Birdcard";
+import ObservationsList from "./observationsList/ObservationsList";
 
 class MainView extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  componentDidUpdate() {
+  componentDidMount() {
     window.scrollTo(0, 0);
   }
 
   render() {
-    console.log(this.props);
     return (
       <div className="container-fluid col-lg-4">
         <div className="row justify-content-center jumbotron">
-          <h1 className="text-center">Bird gallery</h1>
+          <h1 className="text-center ">Bird gallery</h1>
           <p className="text-center lead">
             Here you can see what other people have seen
           </p>
@@ -38,6 +33,7 @@ class MainView extends Component {
             <p className="card-subtitle mb-2 text-muted">Geolocation</p>
           </div>
         </div>
+        <ObservationsList observationsList={this.props.observationsList} />
         <br />
         <Link className="btn btn-secondary col-12" to="/CreateNewObservation">
           Create new observation
