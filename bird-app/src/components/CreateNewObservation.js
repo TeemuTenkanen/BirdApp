@@ -8,6 +8,8 @@ class CreateNewObservation extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleDropdown = this.handleDropdown.bind(this);
     this.handleImageChange = this.handleImageChange.bind(this);
+    this.handleVideoChange = this.handleVideoChange.bind(this);
+    this.handleSoundChange = this.handleSoundChange.bind(this);
 
     this.state = {
       birdName: "",
@@ -16,8 +18,9 @@ class CreateNewObservation extends Component {
       timeStamp: "",
       lat: "",
       geolocation: "",
-      picture: "",
-      imageUrl: ""
+      imageUrl: "",
+      video: "",
+      sound: ""
     };
 
     //With this I can get current latitude
@@ -46,11 +49,34 @@ class CreateNewObservation extends Component {
 
     reader.onloadend = () => {
       this.setState({
-        picture: picture,
         imageUrl: reader.result
       });
     };
     reader.readAsDataURL(picture);
+  }
+
+  handleVideoChange(e) {
+    let reader = new FileReader();
+    let video = e.target.files[0];
+
+    reader.onloadend = () => {
+      this.setState({
+        video: reader.result
+      });
+    };
+    reader.readAsDataURL(video);
+  }
+
+  handleSoundChange(e) {
+    let reader = new FileReader();
+    let Sound = e.target.files[0];
+
+    reader.onloadend = () => {
+      this.setState({
+        Sound: reader.result
+      });
+    };
+    reader.readAsDataURL(Sound);
   }
 
   handleSubmit(event) {
@@ -62,7 +88,8 @@ class CreateNewObservation extends Component {
       rarity: this.state.rarity,
       timeStamp: Date().toString(),
       lat: this.state.lat,
-      imageUrl: this.state.imageUrl
+      imageUrl: this.state.imageUrl,
+      video: this.state.video
     };
 
     this.props.addToObservationsList(newObservations);
@@ -122,7 +149,13 @@ class CreateNewObservation extends Component {
               </div>
               <div className="form-group">
                 <label>Add picture</label>
+                <br />
                 <input type="file" onChange={this.handleImageChange} />
+              </div>
+              <div className="form-group">
+                <label>Add Video </label>
+                <br />
+                <input type="file" onChange={this.handleVideoChange} />
               </div>
               <button className="btn btn-primary" onClick={this.handleSubmit}>
                 Submit

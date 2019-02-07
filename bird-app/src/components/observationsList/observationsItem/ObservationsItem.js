@@ -9,6 +9,11 @@ const ObservationsItem = props => {
           src={props.observation.imageUrl}
           alt="Example pic"
         />
+        <video className="card-img-top" controls>
+          <source src={props.observation.video} type="video/mp4" />
+          <source src={props.observation.video} type="video/ogg" />
+          Your browser does not support the video tag.
+        </video>
         <div className="card-body">
           <h5 className="card-title">{props.observation.birdName}</h5>
           <h6 className="card-subtitle mb-2 text-muted">
