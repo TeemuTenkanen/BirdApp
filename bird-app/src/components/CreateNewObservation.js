@@ -16,17 +16,20 @@ class CreateNewObservation extends Component {
       notes: "",
       rarity: "",
       timeStamp: "",
-      lat: "",
+      latitude: "",
+      longitude: "",
+      cityName: "",
       geolocation: "",
       imageUrl: "",
       video: "",
       sound: ""
     };
 
-    //With this I can get current latitude
+    //With this I can get current latitude and logitude
     window.navigator.geolocation.getCurrentPosition(
       position => {
-        this.setState({ lat: position.coords.latitude });
+        this.setState({ longitude: position.coords.longitude });
+        this.setState({ latitude: position.coords.latitude });
       },
       err => console.log(err)
     );
@@ -69,27 +72,39 @@ class CreateNewObservation extends Component {
 
   handleSoundChange(e) {
     let reader = new FileReader();
-    let Sound = e.target.files[0];
+    let sound = e.target.files[0];
 
     reader.onloadend = () => {
       this.setState({
-        Sound: reader.result
+        sound: reader.result
       });
     };
-    reader.readAsDataURL(Sound);
+    reader.readAsDataURL(sound);
   }
 
   handleSubmit(event) {
     event.preventDefault();
+    // Try to get city name from lat and long with curren weather map api
+    // WORKING ON!!!
+    /*var cityUrl =
+      "api.openweathermap.org/data/2.5/weather?lat=" +
+      this.state.latitude +
+      "&lon=" +
+      this.state.longitude;
+
+    const url1 = cityUrl;
+    const city = GetData(url1);*/
 
     const newObservations = {
       birdName: this.state.birdName,
       notes: this.state.notes,
       rarity: this.state.rarity,
       timeStamp: Date().toString(),
-      lat: this.state.lat,
+      latitude: this.state.latitude,
+      longitude: this.state.longitude,
       imageUrl: this.state.imageUrl,
-      video: this.state.video
+      video: this.state.video,
+      sound: this.state.sound
     };
 
     this.props.addToObservationsList(newObservations);
@@ -156,6 +171,11 @@ class CreateNewObservation extends Component {
                 <label>Add Video </label>
                 <br />
                 <input type="file" onChange={this.handleVideoChange} />
+              </div>
+              <div className="form-group">
+                <label>Add sound record </label>
+                <br />
+                <input type="file" onChange={this.handleSoundChange} />
               </div>
               <button className="btn btn-primary" onClick={this.handleSubmit}>
                 Submit

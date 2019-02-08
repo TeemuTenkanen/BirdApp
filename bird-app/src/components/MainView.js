@@ -6,9 +6,7 @@ class MainView extends Component {
   componentDidMount() {
     window.scrollTo(0, 0);
   }
-  state = {
-    videoURL: ""
-  };
+
   render() {
     return (
       <div className="container-fluid col-lg-4">
@@ -44,6 +42,17 @@ class MainView extends Component {
             </p>
             <p className="card-subtitle mb-2 text-muted">Timestamp</p>
             <p className="card-subtitle mb-2 text-muted">Geolocation</p>
+            <audio controls>
+              <source
+                src="https://www.computerhope.com/jargon/m/example.mp3"
+                type="audio/ogg"
+              />
+              <source
+                src="https://www.computerhope.com/jargon/m/example.mp3"
+                type="audio/mpeg"
+              />
+              Your browser does not support the audio element.
+            </audio>
           </div>
         </div>
         <ObservationsList observationsList={this.props.observationsList} />

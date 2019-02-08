@@ -28,9 +28,11 @@ class App extends Component {
           notes: observationsList[observation].notes,
           rarity: observationsList[observation].rarity,
           timeStamp: observationsList[observation].timeStamp,
-          lat: observationsList[observation].lat,
+          latitude: observationsList[observation].latitude,
+          longitude: observationsList[observation].longitude,
           imageUrl: observationsList[observation].imageUrl,
-          video: observationsList[observation].video
+          video: observationsList[observation].video,
+          sound: observationsList[observation].sound
         });
       }
       this.setState({
@@ -47,8 +49,6 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.observationsList);
-
     return (
       <Router>
         <React.Fragment>

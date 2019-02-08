@@ -29,3 +29,7 @@ body {
   list-style-type: none;
   padding: 0;
 }
+
+.endDiv {
+  padding-bottom: 80px;
+}
