@@ -82,26 +82,39 @@ class CreateNewObservation extends Component {
     reader.readAsDataURL(sound);
   }
 
-  handleSubmit(event) {
+  // Try to get city name from lat and long with curren weather map api
+  // WORKING ON!!!
+  /*getCityname = async () => {
+    const city_api_call = await fetch(
+      "http://api.openweathermap.org/data/2.5/weather?lat=" +
+        this.state.latitude +
+        "&lon=" +
+        this.state.longitude +
+        "&appid=8f4ae28ced2b5c21d09e9ed7f89e59a1"
+    );
+    const response = await city_api_call.json();
+    this.setState({ cityName: response.name });
+  };*/
+  handleSubmit = async event => {
     event.preventDefault();
-    // Try to get city name from lat and long with curren weather map api
-    // WORKING ON!!!
-    /*var cityUrl =
-      "api.openweathermap.org/data/2.5/weather?lat=" +
-      this.state.latitude +
-      "&lon=" +
-      this.state.longitude;
-
-    const url1 = cityUrl;
-    const city = GetData(url1);*/
+    const city_api_call = await fetch(
+      "http://api.openweathermap.org/data/2.5/weather?lat=" +
+        this.state.latitude +
+        "&lon=" +
+        this.state.longitude +
+        "&appid=8f4ae28ced2b5c21d09e9ed7f89e59a1"
+    );
+    const response = await city_api_call.json();
 
     const newObservations = {
       birdName: this.state.birdName,
       notes: this.state.notes,
       rarity: this.state.rarity,
       timeStamp: Date().toString(),
+      timeMilliSeconds: Date.now(),
       latitude: this.state.latitude,
       longitude: this.state.longitude,
+      cityName: response.name,
       imageUrl: this.state.imageUrl,
       video: this.state.video,
       sound: this.state.sound
@@ -110,7 +123,7 @@ class CreateNewObservation extends Component {
     this.props.addToObservationsList(newObservations);
 
     this.props.history.push("/");
-  }
+  };
 
   componentDidMount() {
     window.scrollTo(0, 0);

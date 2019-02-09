@@ -43,10 +43,13 @@ const ObservationsItem = props => {
             {props.observation.timeStamp}
           </p>
           <p className="card-subtitle mb-2 text-muted">
-            {props.observation.latitude}
+            latitude: {props.observation.latitude}
           </p>
           <p className="card-subtitle mb-2 text-muted">
-            {props.observation.longitude}
+            Longitude: {props.observation.longitude}
+          </p>
+          <p className="card-subtitle mb-2 text-muted">
+            {props.observation.cityName}
           </p>
           {audioTag}
         </div>

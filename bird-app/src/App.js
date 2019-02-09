@@ -13,7 +13,8 @@ class App extends Component {
     this.addToObservationsList = this.addToObservationsList.bind(this);
 
     this.state = {
-      observationsList: []
+      observationsList: [],
+      loaded: false
     };
   }
 
@@ -21,6 +22,9 @@ class App extends Component {
     const observationRef = firebase.database().ref("observationsList");
     observationRef.on("value", snapshot => {
       let observationsList = snapshot.val();
+      // Sort observation list by timestamp (timeMilliSeconds)
+
+      this.setState({ loaded: true });
       let newState = [];
       for (let observation in observationsList) {
         newState.push({
@@ -28,13 +32,18 @@ class App extends Component {
           notes: observationsList[observation].notes,
           rarity: observationsList[observation].rarity,
           timeStamp: observationsList[observation].timeStamp,
+          timeMilliSeconds: observationsList[observation].timeMilliSeconds,
           latitude: observationsList[observation].latitude,
           longitude: observationsList[observation].longitude,
+          cityName: observationsList[observation].cityName,
           imageUrl: observationsList[observation].imageUrl,
           video: observationsList[observation].video,
           sound: observationsList[observation].sound
         });
       }
+      newState.sort(function(a, b) {
+        return b.timeMilliSeconds - a.timeMilliSeconds;
+      });
       this.setState({
         observationsList: newState
       });
@@ -59,6 +68,7 @@ class App extends Component {
             render={props => (
               <MainView
                 {...props}
+                loaded={this.state.loaded}
                 observationsList={this.state.observationsList}
               />
             )}

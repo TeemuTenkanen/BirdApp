@@ -33,3 +33,7 @@ body {
 .endDiv {
   padding-bottom: 80px;
 }
+
+.create-new-observation-button {
+  margin-bottom: 2rem;
+}
