@@ -4,30 +4,12 @@ Simple but cool react app that lets you add new observations of birds to the pag
 
 ## Installation
 
-First you need to check that you have installed node.js, so we use npm.
+Clone BirdApp repo (example: git clone https://github.com/TeemuTenkanen/BirdApp.git) to your own device and use npm install command to configure all the packages to your project.
 
-Now we can install react, react-dom, React-router-dom, bootstrap and firebase that you need in this project.
+It will install react, react-dom, React-router-dom, bootstrap and firebase that you need in this project.
+
 (Make sure you are on your project directory)
 
-
-You can install React like this:                npm install --save react
-
-You can install React-dom like this:            npm install --save react-dom
-
-You can install React-router-dom like this:     npm install react-router-dom
-
-You can install Bootstrap like this:            npm install --save bootstrap
-
-Also follow these steps from here:
-https://facebook.github.io/create-react-app/docs/adding-bootstrap
-
-You can install firebase like this:             npm install firebase 
-
-and follow these instruction if you want to make your own database etc.: 
-https://firebase.google.com/docs/web/setup
-
-Here you can get good tips for making your own firebase project:
-https://www.robinwieruch.de/complete-firebase-authentication-react-tutorial/
 
 ## API Reference
 
