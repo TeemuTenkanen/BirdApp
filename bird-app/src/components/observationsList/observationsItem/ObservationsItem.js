@@ -8,7 +8,7 @@ const ObservationsItem = props => {
     videoTag = <p hidden />;
   } else {
     videoTag = (
-      <video className="card-img-top" controls alt="">
+      <video className="videoTag" style={{ width: "40%" }} controls alt="">
         <source src={props.observation.video} type="video/mp4" />
         <source src={props.observation.video} type="video/ogg" />
         Your browser does not support the video element.
@@ -21,7 +21,7 @@ const ObservationsItem = props => {
     audioTag = <p hidden />;
   } else {
     audioTag = (
-      <audio controls>
+      <audio className="audioTag" controls>
         <source src={props.observation.sound} type="audio/ogg" />
         <source src={props.observation.sound} type="audio/mpeg" />
         Your browser does not support the audio element.
@@ -32,26 +32,30 @@ const ObservationsItem = props => {
     <li>
       <div className="card">
         <img className="card-img-top" src={props.observation.imageUrl} alt="" />
-        {videoTag}
+
         <div className="card-body">
           <h5 className="card-title">{props.observation.birdName}</h5>
           <h6 className="card-subtitle mb-2 text-muted">
             {props.observation.rarity}
           </h6>
+          <p className="card-text">Notes:</p>
           <p className="card-text">{props.observation.notes} </p>
-          <p className="card-subtitle mb-2 text-muted">
-            {props.observation.timeStamp}
-          </p>
-          <p className="card-subtitle mb-2 text-muted">
-            latitude: {props.observation.latitude}
-          </p>
-          <p className="card-subtitle mb-2 text-muted">
-            Longitude: {props.observation.longitude}
-          </p>
-          <p className="card-subtitle mb-2 text-muted">
-            {props.observation.cityName}
-          </p>
           {audioTag}
+          <br />
+          {videoTag}
+          <div className="space" />
+          <p className="card-subtitle mb-2 text-muted">
+            <small> {props.observation.timeStamp}</small>
+          </p>
+          <p className="card-subtitle mb-2 text-muted">
+            <small> Latitude: {props.observation.latitude}</small>
+          </p>
+          <p className="card-subtitle mb-2 text-muted">
+            <small>Longitude: {props.observation.longitude}</small>
+          </p>
+          <p className="card-subtitle mb-2 text-muted">
+            <small> {props.observation.cityName}</small>
+          </p>
         </div>
       </div>
       <div className="endDiv" />

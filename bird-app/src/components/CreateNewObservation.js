@@ -14,7 +14,7 @@ class CreateNewObservation extends Component {
     this.state = {
       birdName: "",
       notes: "",
-      rarity: "",
+      rarity: "Common",
       timeStamp: "",
       latitude: "",
       longitude: "",
@@ -82,23 +82,11 @@ class CreateNewObservation extends Component {
     reader.readAsDataURL(sound);
   }
 
-  // Try to get city name from lat and long with curren weather map api
-  // WORKING ON!!!
-  /*getCityname = async () => {
-    const city_api_call = await fetch(
-      "http://api.openweathermap.org/data/2.5/weather?lat=" +
-        this.state.latitude +
-        "&lon=" +
-        this.state.longitude +
-        "&appid=8f4ae28ced2b5c21d09e9ed7f89e59a1"
-    );
-    const response = await city_api_call.json();
-    this.setState({ cityName: response.name });
-  };*/
   handleSubmit = async event => {
     event.preventDefault();
+    // I use open weather map api to get the city/area name from latitude and longitude values
     const city_api_call = await fetch(
-      "http://api.openweathermap.org/data/2.5/weather?lat=" +
+      "https://api.openweathermap.org/data/2.5/weather?lat=" +
         this.state.latitude +
         "&lon=" +
         this.state.longitude +
@@ -134,11 +122,9 @@ class CreateNewObservation extends Component {
       <React.Fragment>
         <div className="container-fluid col-lg-4">
           <div className="row justify-content-center jumbotron">
-            <h1 className="col-11 text-center">Form</h1>
-            <p className="col-11 text-center lead">
-              Here you can fill the new sight
-            </p>
+            <h1 className="col-11 text-center">Create new observation</h1>
           </div>
+
           <div className="row justify-content-center m-5">
             <form>
               <div className="form-group">
@@ -178,7 +164,12 @@ class CreateNewObservation extends Component {
               <div className="form-group">
                 <label>Add picture</label>
                 <br />
-                <input type="file" onChange={this.handleImageChange} />
+                <input
+                  type="file"
+                  onChange={this.handleImageChange}
+                  accept="image/*"
+                  capture="camera"
+                />
               </div>
               <div className="form-group">
                 <label>Add Video </label>
