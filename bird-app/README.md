@@ -2,6 +2,8 @@
 
 Simple but cool react app that lets you add new observations of birds to the page. You can add pictures, videos, sound, tell the rarity of the bird and make notes.
 
+You can use the app here: https://bird-app-database.firebaseapp.com/
+
 ## Installation
 
 Clone BirdApp repo (example: git clone https://github.com/TeemuTenkanen/BirdApp.git) to your own device and use npm install command to configure all the packages to your project.
