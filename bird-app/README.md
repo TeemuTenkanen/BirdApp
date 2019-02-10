@@ -1,3 +1,52 @@
+# BirdApp
+
+Simple but cool react app that lets you add new observations of birds to the page. You can add pictures, videos, sound, tell the rarity of the bird and make notes.
+
+## Installation
+
+First you need to check that you have installed node.js, so we use npm.
+
+Now we can install react, react-dom, React-router-dom, bootstrap and firebase that you need in this project.
+(Make sure you are on your project directory)
+
+
+You can install React like this:                npm install --save react
+
+You can install React-dom like this:            npm install --save react-dom
+
+You can install React-router-dom like this:     npm install react-router-dom
+
+You can install Bootstrap like this:            npm install --save bootstrap
+
+Also follow these steps from here:
+https://facebook.github.io/create-react-app/docs/adding-bootstrap
+
+You can install firebase like this:             npm install firebase 
+
+and follow these instruction if you want to make your own database etc.: 
+https://firebase.google.com/docs/web/setup
+
+Here you can get good tips for making your own firebase project:
+https://www.robinwieruch.de/complete-firebase-authentication-react-tutorial/
+
+## API Reference
+
+I used Open weather map api to get city name from longitude and latitude and firebase api for hosting my project and handling the data storaging.
+
+Open weather map api: https://openweathermap.org/api
+
+Firebase api: https://firebase.google.com/docs/web/setup 
+
+You need your own api keys if you want to do your own project. You can get them from sites above.
+
+## How to use
+
+After you have done the installation step you can start you project with npm start. This open new page to localhost:3000
+where you project will launch.
+
+If you get error try npm install.
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
@@ -37,32 +86,8 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+### `npm deploy firebase`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Deploys build to the firebase host server.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
